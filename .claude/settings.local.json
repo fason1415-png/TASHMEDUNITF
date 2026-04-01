@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs wc:*)",
+      "Bash(php -l routes/web.php)",
+      "Bash(php -l routes/api.php)",
+      "Bash(php -l routes/console.php)",
+      "Bash(php -l app/Http/Controllers/*.php)",
+      "Bash(grep -r \"use App\\\\\\\\\" /d/XAMPP/htdocs/dashboard/1/app/Services/*.php)",
+      "Bash(php -l app/Http/Middleware/*.php)",
+      "Bash(php -l app/Models/*.php)",
+      "Bash(php -l /d/XAMPP/htdocs/dashboard/1/app/Services/SurveySubmissionService.php)",
+      "Bash(php -l /d/XAMPP/htdocs/dashboard/1/app/Services/RequestFingerprintService.php)",
+      "Bash(php -l /d/XAMPP/htdocs/dashboard/1/app/Services/QrCodeService.php)",
+      "Bash(php -l /d/XAMPP/htdocs/dashboard/1/app/Services/FraudDetectionService.php)",
+      "Bash(php -l app/Services/SurveySubmissionService.php)",
+      "Bash(php -r \"require 'app/Services/SurveySubmissionService.php';\")",
+      "Bash(php -r \"require 'vendor/autoload.php'; require 'app/Services/SurveySubmissionService.php';\")",
+      "Bash(grep -n \"constrained\\\\|foreign\" database/migrations/*.php)",
+      "Bash(find /d/XAMPP/htdocs/dashboard/1/tests -type f -name \"*.php\" -exec wc -l {} \\\\;)",
+      "Bash(grep -n \"class.*Export\" /d/XAMPP/htdocs/dashboard/1/app/Exports/*.php)",
+      "Bash(find database/migrations -name \"*.php\" -exec grep -l \"clinic_id.*doctor_id\\\\|phone.*preferred_language\" {} \\\\;)",
+      "Bash(ipconfig)",
+      "Bash(php artisan:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://192.168.1.0/dashboard/1/public/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://192.168.1.0/dashboard/1/public/f/jyDV9lLOfLeCz4hdzOJXdukbYRbSruLgTZUDwVvB\")",
+      "Bash(curl -s \"http://192.168.1.0/dashboard/1/public/f/jyDV9lLOfLeCz4hdzOJXdukbYRbSruLgTZUDwVvB\")",
+      "Bash(npm run:*)"
+    ]
+  }
+}

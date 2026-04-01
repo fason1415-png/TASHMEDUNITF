@@ -1,0 +1,52 @@
+# Project Structure
+
+```text
+app/
+  Exports/
+  Filament/
+    Pages/
+    Resources/
+    Widgets/
+  Http/
+    Controllers/
+      Api/
+    Middleware/
+    Requests/
+  Jobs/
+  Models/
+    Concerns/
+  Services/
+  Support/
+ai-service/
+  app/
+    main.py
+    nlp_engine.py
+    schemas.py
+  requirements.txt
+config/
+database/
+  factories/
+  migrations/
+  seeders/
+deploy/
+  nginx/
+  supervisor/
+docs/
+lang/
+  en/
+  ru/
+  uz_latn/
+  uz_cyrl/
+resources/
+  views/
+    survey/
+    reports/
+    filament/pages/
+routes/
+  web.php
+  api.php
+tests/
+  Feature/
+  Unit/
+```
+
