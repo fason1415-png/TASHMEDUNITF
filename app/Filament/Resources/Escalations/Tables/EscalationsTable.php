@@ -13,6 +13,7 @@ class EscalationsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns([
                 TextColumn::make('uuid')
                     ->label('UUID')

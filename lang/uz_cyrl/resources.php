@@ -76,5 +76,25 @@ return [
         'plural' => 'Фойдаланувчилар',
         'navigation' => 'Фойдаланувчилар',
     ],
+    'patient' => [
+        'singular' => 'Бемор',
+        'plural' => 'Беморлар',
+        'navigation' => 'Беморлар',
+    ],
+    'discharge' => [
+        'singular' => 'Чиқариш',
+        'plural' => 'Чиқаришлар',
+        'navigation' => 'Чиқаришлар',
+    ],
+    'patronage_task' => [
+        'singular' => 'Патронаж таск',
+        'plural' => 'Патронаж тасклар',
+        'navigation' => 'Патронаж тасклар',
+    ],
+    'patronage_escalation_rule' => [
+        'singular' => 'Эскалация қоидаси',
+        'plural' => 'Эскалация қоидалари',
+        'navigation' => 'Эскалация қоидалари',
+    ],
 ];
 

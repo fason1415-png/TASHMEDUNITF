@@ -24,6 +24,12 @@ class SurveyResource extends BaseResource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
+    protected static ?string $navigationLabel = 'So\'rovnomalar';
+
+    protected static ?string $modelLabel = 'So\'rovnoma';
+
+    protected static ?string $pluralModelLabel = 'So\'rovnomalar';
+
     public static function form(Schema $schema): Schema
     {
         return SurveyForm::configure($schema);
@@ -58,8 +64,3 @@ class SurveyResource extends BaseResource
             ]);
     }
 }
-
-
-
-
-

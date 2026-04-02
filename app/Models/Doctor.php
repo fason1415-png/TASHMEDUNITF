@@ -34,6 +34,14 @@ class Doctor extends Model
         'is_active',
         'hired_at',
         'left_at',
+        'doctor_type',
+        'territorial_region',
+        'territorial_district',
+        'telegram_chat_id',
+        'phone',
+        'push_token',
+        'accepts_patronage',
+        'max_active_patronage',
     ];
 
     protected function casts(): array
@@ -42,6 +50,8 @@ class Doctor extends Model
             'is_active' => 'boolean',
             'hired_at' => 'date',
             'left_at' => 'date',
+            'accepts_patronage' => 'boolean',
+            'max_active_patronage' => 'integer',
         ];
     }
 
@@ -78,5 +88,15 @@ class Doctor extends Model
     public function ratingSnapshots(): HasMany
     {
         return $this->hasMany(RatingSnapshot::class);
+    }
+
+    public function patronageTasks(): HasMany
+    {
+        return $this->hasMany(PatronageTask::class, 'family_doctor_id');
+    }
+
+    public function patients(): HasMany
+    {
+        return $this->hasMany(Patient::class, 'family_doctor_id');
     }
 }

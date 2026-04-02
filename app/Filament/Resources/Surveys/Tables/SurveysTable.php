@@ -17,47 +17,40 @@ class SurveysTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('uuid')
-                    ->label('UUID')
-                    ->searchable(),
                 TextColumn::make('clinic.name')
-                    ->searchable(),
+                    ->label('Klinika')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                IconColumn::make('is_default')
-                    ->boolean(),
+                    ->label('Nomi')
+                    ->searchable()
+                    ->weight('bold'),
+                TextColumn::make('questions_count')
+                    ->label('Savollar')
+                    ->counts('questions')
+                    ->badge()
+                    ->color('info'),
                 IconColumn::make('is_active')
+                    ->label('Faol')
                     ->boolean(),
-                IconColumn::make('allow_anonymous')
-                    ->boolean(),
-                IconColumn::make('require_token_verification')
-                    ->boolean(),
-                IconColumn::make('callback_enabled')
+                IconColumn::make('is_default')
+                    ->label('Asosiy')
                     ->boolean(),
                 TextColumn::make('estimated_seconds')
-                    ->numeric()
+                    ->label('Vaqt')
+                    ->suffix(' s')
                     ->sortable(),
-                TextColumn::make('starts_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('ends_at')
-                    ->dateTime()
-                    ->sortable(),
+                TextColumn::make('responses_count')
+                    ->label('Javoblar')
+                    ->counts('responses')
+                    ->badge()
+                    ->color('success'),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('Yaratilgan')
+                    ->dateTime('d.m.Y')
+                    ->sortable(),
             ])
             ->filters([
                 TrashedFilter::make(),

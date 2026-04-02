@@ -12,7 +12,7 @@ class QrLabelController extends Controller
     public function show(QrCode $qrCode, QrCodeService $qrCodeService): Response
     {
         $surveyUrl = $qrCodeService->buildSurveyUrl($qrCode->token);
-        $qrImageDataUri = $qrCodeService->renderImageDataUri($surveyUrl, 280);
+        $qrImageDataUri = $qrCodeService->renderImageDataUri($surveyUrl, 500);
 
         $pdf = Pdf::loadView('reports.qr-label', [
             'qrCode' => $qrCode->load(['clinic', 'branch', 'department', 'doctor', 'servicePoint']),

@@ -8,23 +8,25 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        api: __DIR__.'/../routes/api.php',
-        commands: __DIR__.'/../routes/console.php',
-        health: '/up',
+        web: __DIR__."/../routes/web.php",
+        api: __DIR__."/../routes/api.php",
+        commands: __DIR__."/../routes/console.php",
+        health: "/up",
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->trustProxies(at: "*");
+
         $middleware->alias([
-            'locale' => SetLocale::class,
-            'tenant' => ResolveTenantContext::class,
+            "locale" => SetLocale::class,
+            "tenant" => ResolveTenantContext::class,
         ]);
 
-        $middleware->appendToGroup('web', [
+        $middleware->appendToGroup("web", [
             SetLocale::class,
             ResolveTenantContext::class,
         ]);
 
-        $middleware->appendToGroup('api', [
+        $middleware->appendToGroup("api", [
             SetLocale::class,
             ResolveTenantContext::class,
         ]);

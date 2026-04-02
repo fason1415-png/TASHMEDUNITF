@@ -76,5 +76,41 @@ return [
         'plural' => 'Foydalanuvchilar',
         'navigation' => 'Foydalanuvchilar',
     ],
+    'patient' => [
+        'singular' => 'Bemor',
+        'plural' => 'Bemorlar',
+        'navigation' => 'Bemorlar',
+    ],
+    'discharge' => [
+        'singular' => 'Chiqarish',
+        'plural' => 'Chiqarishlar',
+        'navigation' => 'Chiqarishlar',
+    ],
+    'patronage_task' => [
+        'singular' => 'Patronaj task',
+        'plural' => 'Patronaj tasklar',
+        'navigation' => 'Patronaj tasklar',
+    ],
+    'patronage_escalation_rule' => [
+        'singular' => 'Eskalatsiya qoidasi',
+        'plural' => 'Eskalatsiya qoidalari',
+        'navigation' => 'Eskalatsiya qoidalari',
+    ],
+    'survey_responses' => [
+        'doctor' => 'Shifokor',
+        'clinic' => 'Klinika',
+        'branch' => 'Filial',
+        'department' => 'Bo\'lim',
+        'channel' => 'Kanal',
+        'quality' => 'Sifat bali',
+        'confidence' => 'Ishonch',
+        'sentiment' => 'Kayfiyat',
+        'flagged' => 'Bayroq',
+        'status' => 'Holat',
+        'callback' => 'Qayta aloqa',
+        'language' => 'Til',
+        'fraud' => 'Firibgarlik',
+        'submitted' => 'Yuborilgan',
+    ],
 ];
 

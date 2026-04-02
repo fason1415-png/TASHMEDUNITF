@@ -85,5 +85,20 @@ class Clinic extends Model
     {
         return $this->hasMany(Subscription::class);
     }
+
+    public function patients(): HasMany
+    {
+        return $this->hasMany(Patient::class);
+    }
+
+    public function discharges(): HasMany
+    {
+        return $this->hasMany(Discharge::class);
+    }
+
+    public function patronageTasks(): HasMany
+    {
+        return $this->hasMany(PatronageTask::class);
+    }
 }
 

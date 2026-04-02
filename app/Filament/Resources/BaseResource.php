@@ -37,9 +37,13 @@ abstract class BaseResource extends Resource
             'escalation' => 100,
             'reward_rule' => 110,
             'reward' => 120,
-            'subscription' => 130,
-            'invoice' => 140,
-            'user' => 150,
+            'patient' => 160,
+            'discharge' => 170,
+            'patronage_task' => 180,
+            'patronage_escalation_rule' => 190,
+            'subscription' => 200,
+            'invoice' => 210,
+            'user' => 220,
         ];
 
         return $sortMap[static::getResourceTranslationKey()] ?? parent::getNavigationSort();
@@ -148,6 +152,10 @@ abstract class BaseResource extends Resource
             'escalation' => 'feedback',
             'reward_rule' => 'finance',
             'reward' => 'finance',
+            'patient' => 'patronage',
+            'discharge' => 'patronage',
+            'patronage_task' => 'patronage',
+            'patronage_escalation_rule' => 'patronage',
             'subscription' => 'finance',
             'invoice' => 'finance',
             'user' => 'system',

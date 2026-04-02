@@ -30,7 +30,7 @@ return [
         'male' => 'Мужчины',
         'bed_occupancy_rate' => 'Заполняемость коек',
 
-        'doctor_panel_title' => 'Панель врача',
+        'doctor_panel_title' => 'Показатели врачей',
         'doctor_item_1' => 'Личный рейтинг и quality score',
         'doctor_item_2' => 'Недельные тренды',
         'doctor_item_3' => 'Сильные и слабые стороны',
@@ -64,7 +64,7 @@ return [
         'top_departments' => 'Топ отделов',
         'no_data' => 'Пока недостаточно данных.',
 
-        'doctor_panel_title' => 'Панель врача',
+        'doctor_panel_title' => 'Показатели врачей',
         'doctor_item_1' => 'Личный рейтинг и quality score',
         'doctor_item_2' => 'Недельные тренды',
         'doctor_item_3' => 'Сильные и слабые стороны',
@@ -75,6 +75,10 @@ return [
         'doctor_kpi_quality' => 'Средний quality score',
         'doctor_kpi_risk' => 'Врачи в риске',
         'doctor_kpi_bonus' => 'Bonus conversion',
+        'doctor_chart_quality' => 'Quality score',
+        'doctor_chart_confidence' => 'Confidence score',
+        'doctor_chart_trend' => 'Динамика тренда',
+        'doctor_chart_risk' => 'Анализ рисков',
         'doctor_tab_top' => 'Топ результаты',
         'doctor_tab_risk' => 'Контроль рисков',
         'doctor_tab_growth' => 'Рост',

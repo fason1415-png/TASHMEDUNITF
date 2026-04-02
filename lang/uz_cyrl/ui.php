@@ -30,7 +30,7 @@ return [
         'male' => 'Эркак',
         'bed_occupancy_rate' => 'Ётоқ бандлик даражаси',
 
-        'doctor_panel_title' => 'Врач панели',
+        'doctor_panel_title' => 'Врач кўрсаткичлари',
         'doctor_item_1' => 'Ўз рейтинги ва quality score',
         'doctor_item_2' => 'Ҳафталик трендлар',
         'doctor_item_3' => 'Кучли ва заиф томонлар',
@@ -64,7 +64,7 @@ return [
         'top_departments' => 'Топ бўлимлар',
         'no_data' => 'Ҳозирча етарли data йўқ.',
 
-        'doctor_panel_title' => 'Врач панели',
+        'doctor_panel_title' => 'Врач кўрсаткичлари',
         'doctor_item_1' => 'Ўз рейтинги ва quality score',
         'doctor_item_2' => 'Ҳафталик трендлар',
         'doctor_item_3' => 'Кучли ва заиф томонлар',
@@ -75,6 +75,10 @@ return [
         'doctor_kpi_quality' => 'Ўртача quality score',
         'doctor_kpi_risk' => 'Рискдаги врачлар',
         'doctor_kpi_bonus' => 'Bonus conversion',
+        'doctor_chart_quality' => 'Quality score',
+        'doctor_chart_confidence' => 'Confidence score',
+        'doctor_chart_trend' => 'Тренд динамикаси',
+        'doctor_chart_risk' => 'Риск таҳлили',
         'doctor_tab_top' => 'Топ натижалар',
         'doctor_tab_risk' => 'Риск назорати',
         'doctor_tab_growth' => 'Ўсиш',

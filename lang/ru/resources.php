@@ -76,5 +76,41 @@ return [
         'plural' => 'Пользователи',
         'navigation' => 'Пользователи',
     ],
+    'patient' => [
+        'singular' => 'Пациент',
+        'plural' => 'Пациенты',
+        'navigation' => 'Пациенты',
+    ],
+    'discharge' => [
+        'singular' => 'Выписка',
+        'plural' => 'Выписки',
+        'navigation' => 'Выписки',
+    ],
+    'patronage_task' => [
+        'singular' => 'Задача патронажа',
+        'plural' => 'Задачи патронажа',
+        'navigation' => 'Задачи патронажа',
+    ],
+    'patronage_escalation_rule' => [
+        'singular' => 'Правило эскалации',
+        'plural' => 'Правила эскалации',
+        'navigation' => 'Правила эскалации',
+    ],
+    'survey_responses' => [
+        'doctor' => 'Врач',
+        'clinic' => 'Клиника',
+        'branch' => 'Филиал',
+        'department' => 'Отделение',
+        'channel' => 'Канал',
+        'quality' => 'Качество',
+        'confidence' => 'Уверенность',
+        'sentiment' => 'Настроение',
+        'flagged' => 'Флаг',
+        'status' => 'Статус',
+        'callback' => 'Обратный звонок',
+        'language' => 'Язык',
+        'fraud' => 'Мошенничество',
+        'submitted' => 'Отправлено',
+    ],
 ];
 

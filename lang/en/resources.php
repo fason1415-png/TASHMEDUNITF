@@ -76,5 +76,41 @@ return [
         'plural' => 'Users',
         'navigation' => 'Users',
     ],
+    'patient' => [
+        'singular' => 'Patient',
+        'plural' => 'Patients',
+        'navigation' => 'Patients',
+    ],
+    'discharge' => [
+        'singular' => 'Discharge',
+        'plural' => 'Discharges',
+        'navigation' => 'Discharges',
+    ],
+    'patronage_task' => [
+        'singular' => 'Patronage Task',
+        'plural' => 'Patronage Tasks',
+        'navigation' => 'Patronage Tasks',
+    ],
+    'patronage_escalation_rule' => [
+        'singular' => 'Patronage Escalation Rule',
+        'plural' => 'Patronage Escalation Rules',
+        'navigation' => 'Patronage Escalation Rules',
+    ],
+    'survey_responses' => [
+        'doctor' => 'Doctor',
+        'clinic' => 'Clinic',
+        'branch' => 'Branch',
+        'department' => 'Department',
+        'channel' => 'Channel',
+        'quality' => 'Quality',
+        'confidence' => 'Confidence',
+        'sentiment' => 'Sentiment',
+        'flagged' => 'Flagged',
+        'status' => 'Status',
+        'callback' => 'Callback',
+        'language' => 'Language',
+        'fraud' => 'Fraud',
+        'submitted' => 'Submitted',
+    ],
 ];
 

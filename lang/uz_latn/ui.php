@@ -30,7 +30,7 @@ return [
         'male' => 'Erkak',
         'bed_occupancy_rate' => 'Yotoq bandlik darajasi',
 
-        'doctor_panel_title' => 'Vrach paneli',
+        'doctor_panel_title' => "Vrach ko'rsatkichlari",
         'doctor_item_1' => 'Oz reytingi va quality score',
         'doctor_item_2' => 'Haftalik trendlar',
         'doctor_item_3' => 'Kuchli va zaif tomonlar',
@@ -47,6 +47,39 @@ return [
         'feature_3_text' => 'Per-klinika weightlarga asoslangan scoring engine bilan doktor bonus eligibility sini avtomatik hisoblang.',
 
         'open_dashboard' => 'Dashboardni ochish',
+
+        'how_it_works' => 'Qanday ishlaydi?',
+        'step_1_title' => 'QR skanerlang',
+        'step_1_text' => 'Bemor palatadagi yoki kabinetdagi QR kodni telefonida skanerlaydi',
+        'step_2_title' => 'Baholang',
+        'step_2_text' => 'Shifokorga 1 dan 5 gacha yulduz va izoh qoldiring — anonim va xavfsiz',
+        'step_3_title' => 'AI tahlil',
+        'step_3_text' => 'Sun\'iy intellekt bahoni tahlil qiladi, sentiment va mavzularni aniqlaydi',
+
+        'patronage_title' => 'Patronaj tizimi',
+        'patronage_subtitle' => 'Bemor chiqarilgandan keyin ham nazorat davom etadi',
+        'patronage_1' => 'Avtomatik oilaviy shifokorga xabar',
+        'patronage_2' => '24 soatda tashrif buyurish SLA',
+        'patronage_3' => 'GPS bilan tashrif tasdiqlash',
+        'patronage_4' => '3 bosqichli eskalatsiya tizimi',
+
+        'telegram_title' => 'Telegram Bot',
+        'telegram_subtitle' => '@ShifoReytingBot orqali 30 soniyada baholang',
+        'telegram_step_1' => 'Klinika tanlang',
+        'telegram_step_2' => 'Shifokor tanlang',
+        'telegram_step_3' => 'Baholang',
+
+        'panels_title' => '3 ta panel — har bir rol uchun',
+        'panel_ministry' => 'Vazirlik',
+        'panel_ministry_desc' => 'Barcha klinikalar, viloyatlar statistikasi, umumiy nazorat',
+        'panel_clinic' => 'Klinika',
+        'panel_clinic_desc' => 'Shifokorlar, bo\'limlar, QR kodlar, feedback tahlili',
+        'panel_doctor' => 'Shifokor',
+        'panel_doctor_desc' => 'Shaxsiy reyting, baholar, patronaj tasklari',
+
+        'cta_title' => 'Shifoxona sifatini AI bilan nazorat qiling',
+        'cta_button' => 'Bepul sinab ko\'ring',
+        'cta_login' => 'Tizimga kirish',
     ],
 
     'executive' => [
@@ -64,7 +97,7 @@ return [
         'top_departments' => 'Top bolimlar',
         'no_data' => "Hozircha yetarli data yoq.",
 
-        'doctor_panel_title' => 'Vrach paneli',
+        'doctor_panel_title' => "Vrach ko'rsatkichlari",
         'doctor_item_1' => 'Oz reytingi va quality score',
         'doctor_item_2' => 'Haftalik trendlar',
         'doctor_item_3' => 'Kuchli va zaif tomonlar',
@@ -75,6 +108,10 @@ return [
         'doctor_kpi_quality' => 'Ortacha quality score',
         'doctor_kpi_risk' => "Riskdagi vrachlar",
         'doctor_kpi_bonus' => "Bonus conversion",
+        'doctor_chart_quality' => 'Quality score',
+        'doctor_chart_confidence' => 'Confidence score',
+        'doctor_chart_trend' => 'Trend dinamikasi',
+        'doctor_chart_risk' => 'Risk tahlili',
         'doctor_tab_top' => 'Top natijalar',
         'doctor_tab_risk' => 'Risk nazorati',
         'doctor_tab_growth' => "O'sish",

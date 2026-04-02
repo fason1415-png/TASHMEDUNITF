@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\Login as AdminLogin;
+use App\Filament\Widgets\AiCommentInsightsWidget;
 use App\Filament\Widgets\ComplaintAlertsWidget;
 use App\Filament\Widgets\ExecutiveHeroWidget;
 use App\Filament\Widgets\FeedbackTrendChart;
@@ -35,7 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login(AdminLogin::class)
-            ->brandName('ShifoReyting AI')
+            ->brandName('ShifoReyting AI | Yoqubjon09')
             ->sidebarWidth('17rem')
             ->maxContentWidth('full')
             ->navigationGroups([
@@ -44,6 +45,9 @@ class AdminPanelProvider extends PanelProvider
                     ->collapsed(),
                 NavigationGroup::make()
                     ->label(fn (): string => __('navigation.groups.feedback'))
+                    ->collapsed(),
+                NavigationGroup::make()
+                    ->label(fn (): string => __('navigation.groups.patronage'))
                     ->collapsed(),
                 NavigationGroup::make()
                     ->label(fn (): string => __('navigation.groups.finance'))
@@ -64,6 +68,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 ExecutiveHeroWidget::class,
                 RealtimeOverview::class,
+                AiCommentInsightsWidget::class,
                 FeedbackTrendChart::class,
                 ComplaintAlertsWidget::class,
             ])

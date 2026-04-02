@@ -25,7 +25,11 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://192.168.1.0/dashboard/1/public/\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://192.168.1.0/dashboard/1/public/f/jyDV9lLOfLeCz4hdzOJXdukbYRbSruLgTZUDwVvB\")",
       "Bash(curl -s \"http://192.168.1.0/dashboard/1/public/f/jyDV9lLOfLeCz4hdzOJXdukbYRbSruLgTZUDwVvB\")",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"Host: hackathon.tashmedunitf.uz\" \"http://localhost/admin/surveys/10/edit\")",
+      "Bash(curl -s https://api.openai.com/v1/chat/completions -H 'Authorization: Bearer __CMDSUB_OUTPUT__')",
+      "Bash(curl -s https://api.openai.com/v1/chat/completions -H 'Authorization: Bearer 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' -H 'Content-Type: application/json' -d '{\"model\":\"gpt-3.5-turbo\",\"messages\":[{\"role\":\"user\",\"content\":\"Say OK\"}],\"max_tokens\":5}')",
+      "Bash(git add:*)"
     ]
   }
 }

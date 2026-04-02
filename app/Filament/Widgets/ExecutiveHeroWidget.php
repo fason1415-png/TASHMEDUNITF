@@ -150,6 +150,75 @@ class ExecutiveHeroWidget extends Widget
             'to' => now()->format('d.m.Y'),
         ];
 
+        $chartQuality = $doctorReports
+            ->sortByDesc('quality')
+            ->take(8)
+            ->map(fn (array $r) => [
+                'name' => str($r['doctor_name'])->limit(12)->toString(),
+                'value' => $r['quality'],
+            ])
+            ->values();
+
+        $chartConfidence = $doctorReports
+            ->sortByDesc('confidence')
+            ->take(8)
+            ->map(fn (array $r) => [
+                'name' => str($r['doctor_name'])->limit(12)->toString(),
+                'value' => $r['confidence'],
+            ])
+            ->values();
+
+        $chartTrend = $doctorReports
+            ->sortByDesc(fn (array $r) => abs($r['trend_delta']))
+            ->take(8)
+            ->map(fn (array $r) => [
+                'name' => str($r['doctor_name'])->limit(12)->toString(),
+                'value' => $r['trend_delta'],
+            ])
+            ->values();
+
+        $chartRisk = $doctorReports
+            ->sortByDesc('risk_score')
+            ->take(8)
+            ->map(fn (array $r) => [
+                'name' => str($r['doctor_name'])->limit(12)->toString(),
+                'value' => $r['risk_score'],
+                'alerts' => $r['open_alerts'],
+            ])
+            ->values();
+
+        // TOP 15 shifokorlar - eng ko'p javob olganlar
+        $top15Doctors = (clone $responseQuery)
+            ->selectRaw('doctor_id, COUNT(*) as total_responses, COALESCE(AVG(quality_score), 0) as avg_quality, COALESCE(AVG(confidence_score), 0) as avg_confidence')
+            ->whereNotNull('doctor_id')
+            ->where('submitted_at', '>=', $windowStart)
+            ->with([
+                'doctor:id,full_name,specialty,clinic_id,department_id,branch_id,experience_years,status,telegram_chat_id,phone,bio',
+                'doctor.clinic:id,name,phone',
+                'doctor.department:id,name',
+                'doctor.branch:id,name',
+            ])
+            ->groupBy('doctor_id')
+            ->orderByDesc('total_responses')
+            ->limit(15)
+            ->get()
+            ->map(fn (SurveyResponse $r) => [
+                'full_name' => $r->doctor?->full_name ?? '—',
+                'specialty' => $r->doctor?->specialty ?? '—',
+                'clinic' => $r->doctor?->clinic?->name ?? '—',
+                'department' => $r->doctor?->department?->name ?? '—',
+                'branch' => $r->doctor?->branch?->name ?? '—',
+                'experience' => $r->doctor?->experience_years ?? '—',
+                'status' => $r->doctor?->status ?? '—',
+                'phone' => $r->doctor?->phone ?? '—',
+                'telegram' => $r->doctor?->telegram_chat_id ?? '—',
+                'clinic_phone' => $r->doctor?->clinic?->phone ?? '—',
+                'bio' => $r->doctor?->bio ?? '',
+                'responses' => (int) $r->total_responses,
+                'quality' => round((float) $r->avg_quality, 1),
+                'confidence' => round((float) $r->avg_confidence, 1),
+            ]);
+
         return [
             'monthResponses' => $monthResponses,
             'avgConfidence' => $avgConfidence,
@@ -163,6 +232,11 @@ class ExecutiveHeroWidget extends Widget
             'topDoctorReports' => $topDoctorReports,
             'riskDoctorReports' => $riskDoctorReports,
             'growthDoctorReports' => $growthDoctorReports,
+            'chartQuality' => $chartQuality,
+            'chartConfidence' => $chartConfidence,
+            'chartTrend' => $chartTrend,
+            'chartRisk' => $chartRisk,
+            'top15Doctors' => $top15Doctors,
         ];
     }
 

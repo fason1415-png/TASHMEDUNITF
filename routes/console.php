@@ -9,3 +9,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('ratings:refresh --days=2')->hourly();
+Schedule::command('patronage:check-sla')->everyFiveMinutes();
+Schedule::command('patronage:send-reminders')->everyFifteenMinutes();

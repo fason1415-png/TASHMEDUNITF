@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignId('clinic_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('namespace')->default('app');
-            $table->string('group')->default('common');
-            $table->string('key');
+            $table->string('namespace', 64)->default('app');
+            $table->string('group', 64)->default('common');
+            $table->string('key', 128);
             $table->string('locale', 12);
             $table->text('value');
             $table->boolean('is_active')->default(true);

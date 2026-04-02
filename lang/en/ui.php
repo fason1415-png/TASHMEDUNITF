@@ -30,7 +30,7 @@ return [
         'male' => 'Male',
         'bed_occupancy_rate' => 'Bed Occupancy Rate',
 
-        'doctor_panel_title' => 'Doctor Panel',
+        'doctor_panel_title' => 'Doctor Metrics',
         'doctor_item_1' => 'Personal rating and quality score',
         'doctor_item_2' => 'Weekly trends',
         'doctor_item_3' => 'Strengths and weak areas',
@@ -64,7 +64,7 @@ return [
         'top_departments' => 'Top Departments',
         'no_data' => 'No enough data yet.',
 
-        'doctor_panel_title' => 'Doctor Panel',
+        'doctor_panel_title' => 'Doctor Metrics',
         'doctor_item_1' => 'Personal rating and quality score',
         'doctor_item_2' => 'Weekly trends',
         'doctor_item_3' => 'Strengths and weak areas',
@@ -75,6 +75,10 @@ return [
         'doctor_kpi_quality' => 'Avg quality score',
         'doctor_kpi_risk' => 'At-risk doctors',
         'doctor_kpi_bonus' => 'Bonus conversion',
+        'doctor_chart_quality' => 'Quality Score',
+        'doctor_chart_confidence' => 'Confidence Score',
+        'doctor_chart_trend' => 'Trend Dynamics',
+        'doctor_chart_risk' => 'Risk Analysis',
         'doctor_tab_top' => 'Top performers',
         'doctor_tab_risk' => 'Risk watch',
         'doctor_tab_growth' => 'Growth',

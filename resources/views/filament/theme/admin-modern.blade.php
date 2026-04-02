@@ -672,6 +672,125 @@
         font-weight: 700;
     }
 
+    .sr-chart-tabs {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.36rem;
+        margin-bottom: 0.65rem;
+    }
+
+    .sr-chart-panel {
+        display: grid;
+        gap: 0.42rem;
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .sr-hbar-row {
+        display: grid;
+        grid-template-columns: 5.5rem 1fr 2.8rem;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .sr-hbar-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #3d5a85;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .sr-hbar-track {
+        height: 1.2rem;
+        background: #edf3fc;
+        border-radius: 0.6rem;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .sr-hbar-fill {
+        height: 100%;
+        border-radius: 0.6rem;
+        transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .sr-hbar-blue {
+        background: linear-gradient(90deg, #2f6ef8, #5a93ff);
+    }
+
+    .sr-hbar-teal {
+        background: linear-gradient(90deg, #12a06e, #35c98e);
+    }
+
+    .sr-hbar-green {
+        background: linear-gradient(90deg, #22b573, #49d89a);
+    }
+
+    .sr-hbar-orange {
+        background: linear-gradient(90deg, #e69a2e, #f0b94d);
+    }
+
+    .sr-hbar-red {
+        background: linear-gradient(90deg, #d74c60, #e86b7d);
+    }
+
+    .sr-hbar-value {
+        font-size: 0.74rem;
+        font-weight: 800;
+        color: #173c6e;
+        text-align: right;
+    }
+
+    .sr-trend-row {
+        display: grid;
+        grid-template-columns: 5.5rem 1fr 3rem;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .sr-trend-track {
+        height: 1.2rem;
+        background: #edf3fc;
+        border-radius: 0.6rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sr-trend-center {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: #b4c8e4;
+    }
+
+    .sr-trend-bar {
+        position: absolute;
+        top: 2px;
+        bottom: 2px;
+        border-radius: 0.4rem;
+        transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .sr-trend-positive {
+        background: linear-gradient(90deg, #22b573, #49d89a);
+    }
+
+    .sr-trend-negative {
+        background: linear-gradient(270deg, #d74c60, #e86b7d);
+    }
+
+    .is-positive-text {
+        color: #0f8d63 !important;
+    }
+
+    .is-negative-text {
+        color: #c2394f !important;
+    }
+
     .fi-wi-widget {
         animation: sr-fade-in 300ms ease;
     }
@@ -705,6 +824,10 @@
 
         .sr-doctor-kpis {
             grid-template-columns: 1fr;
+        }
+
+        .sr-chart-tabs {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
     }
 
@@ -1059,6 +1182,23 @@
         border-color: rgba(239, 109, 132, 0.48);
         background: rgba(239, 109, 132, 0.14);
         color: #ff9daf;
+    }
+
+    .dark .sr-hbar-track,
+    .dark .sr-trend-track {
+        background: #1b2e4a;
+    }
+
+    .dark .sr-hbar-label {
+        color: #b7c9e2;
+    }
+
+    .dark .sr-hbar-value {
+        color: #e5efff;
+    }
+
+    .dark .sr-trend-center {
+        background: #3a5478;
     }
 
     .dark .sr-topbar-locale {
