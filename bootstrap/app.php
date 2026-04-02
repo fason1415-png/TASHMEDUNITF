@@ -19,6 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             "locale" => SetLocale::class,
             "tenant" => ResolveTenantContext::class,
+            "role" => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            "permission" => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         ]);
 
         $middleware->appendToGroup("web", [

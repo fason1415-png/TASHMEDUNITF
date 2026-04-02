@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources\Clinics\Schemas;
 
-use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class ClinicForm
@@ -14,37 +15,41 @@ class ClinicForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                TextInput::make('legal_name'),
-                TextInput::make('region'),
-                TextInput::make('city'),
-                TextInput::make('address'),
-                TextInput::make('phone')
-                    ->tel(),
-                TextInput::make('email')
-                    ->label('Email address')
-                    ->email(),
-                TextInput::make('logo_path'),
-                Textarea::make('branding')
-                    ->columnSpanFull(),
-                Textarea::make('scoring_weights')
-                    ->columnSpanFull(),
-                Textarea::make('ai_settings')
-                    ->columnSpanFull(),
-                TextInput::make('min_public_samples')
-                    ->required()
-                    ->numeric()
-                    ->default(10),
-                TextInput::make('subscription_plan')
-                    ->required()
-                    ->default('start'),
-                DateTimePicker::make('trial_ends_at'),
-                Toggle::make('is_active')
-                    ->required(),
+                Section::make('Klinika')
+                    ->icon('heroicon-o-building-office-2')
+                    ->schema([
+                        Grid::make(2)->schema([
+                            TextInput::make('name')
+                                ->label('Nomi')
+                                ->required(),
+                            TextInput::make('region')
+                                ->label('Viloyat'),
+                        ]),
+                        Grid::make(2)->schema([
+                            TextInput::make('address')
+                                ->label('Manzil'),
+                            TextInput::make('phone')
+                                ->label('Telefon')
+                                ->tel()
+                                ->placeholder('+998 71 000-00-00'),
+                        ]),
+                        Grid::make(2)->schema([
+                            Select::make('subscription_plan')
+                                ->label('Tarif')
+                                ->options([
+                                    'start' => 'Start',
+                                    'standard' => 'Standard',
+                                    'premium' => 'Premium',
+                                ])
+                                ->default('start')
+                                ->required()
+                                ->native(false),
+                            Toggle::make('is_active')
+                                ->label('Faol')
+                                ->default(true)
+                                ->inline(),
+                        ]),
+                    ]),
             ]);
     }
 }
-

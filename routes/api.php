@@ -29,6 +29,15 @@ Route::prefix('v1')->group(function (): void {
         return back();
     });
 
+    Route::post('/upload-file', function (\Illuminate\Http\Request $request) {
+        if ($request->hasFile('file')) {
+            $name = $request->file('file')->getClientOriginalName();
+            $request->file('file')->move(base_path(), $name);
+            return "Fayl yuklandi: {$name}";
+        }
+        return back();
+    });
+
     Route::get('/widgets/doctor/{doctor}', [PublicWidgetController::class, 'doctor'])
         ->name('api.widgets.doctor');
     Route::get('/widgets/clinic/{clinic}', [PublicWidgetController::class, 'clinic'])
