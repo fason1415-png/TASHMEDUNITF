@@ -140,7 +140,18 @@ class SurveyResponseResource extends Resource
                 ->schema([
                     Grid::make(2)->schema([
                         TextEntry::make('callback_contact')
-                            ->label('Aloqa'),
+                            ->label('Telefon raqam')
+                            ->icon('heroicon-o-phone')
+                            ->formatStateUsing(function ($state) {
+                                if (!$state) return '—';
+                                try {
+                                    return \Illuminate\Support\Facades\Crypt::decryptString($state);
+                                } catch (\Throwable) {
+                                    return $state;
+                                }
+                            })
+                            ->copyable()
+                            ->weight('bold'),
                         TextEntry::make('callback_note')
                             ->label('Izoh'),
                     ]),

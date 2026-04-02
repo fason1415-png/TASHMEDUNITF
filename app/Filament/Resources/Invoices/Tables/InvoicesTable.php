@@ -15,50 +15,47 @@ class InvoicesTable
         return $table
             ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('uuid')
-                    ->label('UUID')
-                    ->searchable(),
                 TextColumn::make('clinic.name')
-                    ->searchable(),
-                TextColumn::make('subscription.id')
-                    ->searchable(),
+                    ->label('Klinika')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('invoice_number')
-                    ->searchable(),
-                TextColumn::make('period_start')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('period_end')
-                    ->date()
-                    ->sortable(),
+                    ->label('Hisob raqami')
+                    ->searchable()
+                    ->weight('bold'),
                 TextColumn::make('amount_due')
+                    ->label('Summa')
                     ->numeric()
+                    ->suffix(' so\'m')
                     ->sortable(),
-                TextColumn::make('amount_paid')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('currency')
-                    ->searchable(),
                 TextColumn::make('status')
-                    ->searchable(),
+                    ->label('Holati')
+                    ->badge()
+                    ->color(fn (string $state) => match ($state) {
+                        'paid' => 'success',
+                        'issued' => 'info',
+                        'draft' => 'gray',
+                        'overdue' => 'danger',
+                        'cancelled' => 'gray',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'paid' => 'To\'langan',
+                        'issued' => 'Chiqarilgan',
+                        'draft' => 'Qoralama',
+                        'overdue' => 'Muddati o\'tgan',
+                        'cancelled' => 'Bekor',
+                        default => $state,
+                    }),
                 TextColumn::make('due_date')
-                    ->date()
+                    ->label('To\'lov muddati')
+                    ->date('d.m.Y')
                     ->sortable(),
-                TextColumn::make('paid_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('payment_reference')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
+                TextColumn::make('period_start')
+                    ->label('Davr')
+                    ->date('d.m.Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
             ])
             ->recordActions([
                 EditAction::make(),

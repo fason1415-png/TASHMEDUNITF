@@ -15,61 +15,50 @@ class RewardsTable
         return $table
             ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('uuid')
-                    ->label('UUID')
-                    ->searchable(),
+                TextColumn::make('doctor.full_name')
+                    ->label('Shifokor')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold'),
                 TextColumn::make('clinic.name')
-                    ->searchable(),
-                TextColumn::make('reward_rule_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('rating_snapshot_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('doctor.id')
-                    ->searchable(),
-                TextColumn::make('branch.name')
-                    ->searchable(),
-                TextColumn::make('department.name')
-                    ->searchable(),
+                    ->label('Klinika')
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('title')
+                    ->label('Sarlavha')
                     ->searchable(),
+                TextColumn::make('amount')
+                    ->label('Miqdori')
+                    ->numeric()
+                    ->suffix(' so\'m')
+                    ->sortable()
+                    ->weight('bold'),
+                TextColumn::make('status')
+                    ->label('Holati')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'eligible' => 'Munosib',
+                        'approved' => 'Tasdiqlangan',
+                        'paid' => 'To\'langan',
+                        'rejected' => 'Rad etilgan',
+                        default => $state,
+                    })
+                    ->color(fn (string $state) => match ($state) {
+                        'eligible' => 'info',
+                        'approved' => 'success',
+                        'paid' => 'success',
+                        'rejected' => 'danger',
+                        default => 'gray',
+                    }),
                 TextColumn::make('period_start')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('period_end')
-                    ->date()
+                    ->label('Davr')
+                    ->date('d.m.Y')
                     ->sortable(),
                 TextColumn::make('eligibility_score')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('status')
-                    ->searchable(),
-                TextColumn::make('approved_by')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('approved_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('paid_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('amount')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('currency')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Ball')
+                    ->numeric(1)
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
+                    ->toggleable(),
             ])
             ->recordActions([
                 EditAction::make(),

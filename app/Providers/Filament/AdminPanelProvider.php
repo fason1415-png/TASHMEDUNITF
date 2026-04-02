@@ -37,6 +37,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login(AdminLogin::class)
             ->brandName('ShifoReyting AI | Yoqubjon09')
+            ->brandLogo(fn () => view('filament.brand-logo'))
+            ->brandLogoHeight('40px')
             ->sidebarWidth('17rem')
             ->maxContentWidth('full')
             ->navigationGroups([

@@ -16,47 +16,48 @@ class SubscriptionsTable
         return $table
             ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('uuid')
-                    ->label('UUID')
-                    ->searchable(),
                 TextColumn::make('clinic.name')
-                    ->searchable(),
+                    ->label('Klinika')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('plan')
-                    ->searchable(),
-                TextColumn::make('billing_cycle')
-                    ->searchable(),
-                TextColumn::make('status')
-                    ->searchable(),
+                    ->label('Tarif')
+                    ->badge()
+                    ->color(fn (string $state) => match ($state) {
+                        'premium' => 'success',
+                        'standard' => 'info',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state) => ucfirst($state)),
                 TextColumn::make('price')
-                    ->money()
-                    ->sortable(),
-                TextColumn::make('currency')
-                    ->searchable(),
-                IconColumn::make('auto_renew')
-                    ->boolean(),
-                TextColumn::make('starts_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('ends_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('trial_ends_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('created_by')
+                    ->label('Narxi')
                     ->numeric()
+                    ->suffix(' so\'m')
                     ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
+                TextColumn::make('status')
+                    ->label('Holati')
+                    ->badge()
+                    ->color(fn (string $state) => match ($state) {
+                        'active' => 'success',
+                        'trial' => 'warning',
+                        'past_due' => 'danger',
+                        'cancelled' => 'gray',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'active' => 'Faol',
+                        'trial' => 'Sinov',
+                        'past_due' => 'Muddati o\'tgan',
+                        'cancelled' => 'Bekor',
+                        default => $state,
+                    }),
+                IconColumn::make('auto_renew')
+                    ->label('Uzaytirish')
+                    ->boolean(),
+                TextColumn::make('ends_at')
+                    ->label('Tugash sanasi')
+                    ->dateTime('d.m.Y')
+                    ->sortable(),
             ])
             ->recordActions([
                 EditAction::make(),

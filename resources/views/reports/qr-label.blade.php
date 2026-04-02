@@ -125,6 +125,9 @@
 <body>
 <div class="card">
     <div class="header">
+        @if(file_exists(public_path('images/logo.png')))
+            <img src="{{ public_path('images/logo.png') }}" style="width: 50px; height: 50px; margin: 0 auto 6px; display: block; border-radius: 8px;">
+        @endif
         <div class="logo">ShifoReyting</div>
         <div class="logo-sub">Tibbiy xizmat sifatini baholash tizimi</div>
     </div>

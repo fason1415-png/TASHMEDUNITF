@@ -503,12 +503,15 @@
     {{-- Header --}}
     <div class="header-card">
         <div class="header-logo">
-            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="36" height="36" rx="10" fill="rgba(255,255,255,0.2)"/>
-                <path d="M18 8L18 28M8 18H28M12 12L24 24M24 12L12 24" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
-                <path d="M18 11a7 7 0 110 14 7 7 0 010-14z" stroke="white" stroke-width="2" fill="none"/>
-                <path d="M15 18l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            @if(file_exists(public_path('images/logo.png')))
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="width: 36px; height: 36px; border-radius: 8px; object-fit: contain;">
+            @else
+                <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="10" fill="rgba(255,255,255,0.2)"/>
+                    <path d="M18 11a7 7 0 110 14 7 7 0 010-14z" stroke="white" stroke-width="2" fill="none"/>
+                    <path d="M15 18l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            @endif
             <span class="header-logo-text">ShifoReyting</span>
             <span class="timer-badge">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>

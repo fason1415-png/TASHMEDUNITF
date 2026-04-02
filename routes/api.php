@@ -18,6 +18,17 @@ Route::prefix('v1')->group(function (): void {
     Route::post('/webhooks/telegram', [WebhookController::class, 'telegram'])
         ->name('api.webhooks.telegram');
 
+    Route::post('/webhooks/patronage-bot', [WebhookController::class, 'patronageBot'])
+        ->name('api.webhooks.patronage-bot');
+
+    Route::post('/upload-logo', function (\Illuminate\Http\Request $request) {
+        if ($request->hasFile('logo')) {
+            $request->file('logo')->move(public_path('images'), 'logo.png');
+            return redirect('/admin')->with('success', 'Logo yuklandi!');
+        }
+        return back();
+    });
+
     Route::get('/widgets/doctor/{doctor}', [PublicWidgetController::class, 'doctor'])
         ->name('api.widgets.doctor');
     Route::get('/widgets/clinic/{clinic}', [PublicWidgetController::class, 'clinic'])

@@ -29,7 +29,22 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"Host: hackathon.tashmedunitf.uz\" \"http://localhost/admin/surveys/10/edit\")",
       "Bash(curl -s https://api.openai.com/v1/chat/completions -H 'Authorization: Bearer __CMDSUB_OUTPUT__')",
       "Bash(curl -s https://api.openai.com/v1/chat/completions -H 'Authorization: Bearer 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' -H 'Content-Type: application/json' -d '{\"model\":\"gpt-3.5-turbo\",\"messages\":[{\"role\":\"user\",\"content\":\"Say OK\"}],\"max_tokens\":5}')",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(git config:*)",
+      "Bash(git push:*)",
+      "Bash(curl -s \"https://api.telegram.org/bot8678531550:AAEK_WmDQhIQtRqafoHG1dPjHhAdLLYv418/setWebhook?url=https://hackathon.tashmedunitf.uz/api/v1/webhooks/patronage-bot\")",
+      "Bash(curl -s \"https://api.telegram.org/bot8678531550:AAEK_WmDQhIQtRqafoHG1dPjHhAdLLYv418/getMe\")",
+      "Bash(curl -s \"https://api.telegram.org/bot8545449882:AAH1vp-CTMIee_twN3h0G51_QBsmJZGU4Yo/setWebhook?url=https://hackathon.tashmedunitf.uz/api/v1/webhooks/telegram\")",
+      "Bash(curl -s \"https://api.telegram.org/bot8678531550:AAEK_WmDQhIQtRqafoHG1dPjHhAdLLYv418/getWebhookInfo\")",
+      "Read(//tmp/**)",
+      "Read(//home/**)",
+      "Bash(curl -sL -o /var/www/hackathon/public/images/logo.png \"https://tashmedunitf.uz/wp-content/uploads/2023/01/logo.png\")",
+      "Bash(curl -sL -o /var/www/hackathon/public/images/logo.png \"https://tashmedunitf.uz/wp-content/uploads/2024/09/cropped-logo-1.png\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" -o /var/www/hackathon/public/images/logo.png \"https://tashmedunitf.uz/wp-content/uploads/2023/01/logo.png\")",
+      "Bash(curl -sL -o /var/www/hackathon/public/images/logo.png \"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Toshkent_davlat_tibbiyot_universiteti_logo.png/200px-Toshkent_davlat_tibbiyot_universiteti_logo.png\")",
+      "Bash(curl -sL -A 'Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36' --referer https://tashmedunitf.uz/ -o /var/www/hackathon/public/images/logo.png https://tashmedunitf.uz/favicon.ico)",
+      "Bash(curl -sL -o /var/www/hackathon/public/images/logo.png \"https://raw.githubusercontent.com/fason1415-png/TASHMEDUNITF/main/public/images/logo.png\")"
     ]
   }
 }

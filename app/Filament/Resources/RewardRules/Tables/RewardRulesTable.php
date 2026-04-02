@@ -16,38 +16,42 @@ class RewardRulesTable
         return $table
             ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('uuid')
-                    ->label('UUID')
-                    ->searchable(),
                 TextColumn::make('clinic.name')
-                    ->searchable(),
+                    ->label('Klinika')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->label('Nomi')
+                    ->searchable()
+                    ->weight('bold'),
                 TextColumn::make('trigger_type')
-                    ->searchable(),
-                TextColumn::make('reward_type')
-                    ->searchable(),
+                    ->label('Turi')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'rank' => 'Reyting',
+                        'threshold' => 'Chegara',
+                        'milestone' => 'Belgi',
+                        default => $state,
+                    })
+                    ->color('info'),
                 TextColumn::make('reward_value')
+                    ->label('Miqdori')
                     ->numeric()
+                    ->suffix(' so\'m')
                     ->sortable(),
                 TextColumn::make('period_type')
-                    ->searchable(),
+                    ->label('Davr')
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'monthly' => 'Oylik',
+                        'quarterly' => 'Choraklik',
+                        'yearly' => 'Yillik',
+                        default => $state,
+                    })
+                    ->badge()
+                    ->color('warning'),
                 IconColumn::make('is_active')
+                    ->label('Faol')
                     ->boolean(),
-                TextColumn::make('created_by')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
             ])
             ->recordActions([
                 EditAction::make(),

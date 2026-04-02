@@ -19,49 +19,25 @@ class ClinicsTable
         return $table
             ->defaultSort('id', 'desc')
             ->columns([
-                TextColumn::make('uuid')
-                    ->label('UUID')
-                    ->searchable(),
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
-                TextColumn::make('legal_name')
-                    ->searchable(),
+                    ->label('Nomi')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold'),
                 TextColumn::make('region')
-                    ->searchable(),
-                TextColumn::make('city')
-                    ->searchable(),
-                TextColumn::make('address')
-                    ->searchable(),
+                    ->label('Viloyat')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('phone')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('logo_path')
-                    ->searchable(),
-                TextColumn::make('min_public_samples')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('subscription_plan')
-                    ->searchable(),
-                TextColumn::make('trial_ends_at')
-                    ->dateTime()
-                    ->sortable(),
+                    ->label('Telefon')
+                    ->searchable()
+                    ->copyable(),
                 IconColumn::make('is_active')
+                    ->label('Faol')
                     ->boolean(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('subscription_plan')
+                    ->label('Tarif')
+                    ->badge()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([

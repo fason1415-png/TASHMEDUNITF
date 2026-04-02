@@ -34,6 +34,8 @@ class MinistryPanelProvider extends PanelProvider
             ->path('ministry')
             ->login(AdminLogin::class)
             ->brandName('ShifoReyting | Vazirlik')
+            ->brandLogo(fn () => view('filament.brand-logo'))
+            ->brandLogoHeight('40px')
             ->sidebarWidth('17rem')
             ->maxContentWidth('full')
             ->navigationGroups([

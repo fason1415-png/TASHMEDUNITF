@@ -5,38 +5,78 @@ namespace App\Services;
 use App\Models\PatronageEscalationRule;
 use App\Models\PatronageNotification;
 use App\Models\PatronageTask;
+use Illuminate\Support\Facades\Log;
 
 class PatronageNotificationService
 {
-    private const NOTIFICATION_CHANNELS = ['sms', 'telegram', 'push'];
+    private const NOTIFICATION_CHANNELS = ['telegram'];
+
+    public function __construct(
+        private PatronageBotService $bot,
+    ) {}
 
     /**
-     * Notify doctor of a new patronage task.
-     * Sends via SMS, Telegram, and Push.
-     * Actual sending is done by SendPatronageNotificationJob (dispatched separately).
+     * Notify doctor of a new patronage task via Telegram bot.
      */
     public function notifyDoctorOfNewTask(PatronageTask $task): void
     {
-        $task->loadMissing(['patient', 'discharge']);
+        $task->loadMissing(['patient', 'discharge', 'familyDoctor', 'hospitalClinic']);
 
         $patientName = $task->patient?->full_name ?? 'Noma\'lum';
         $diagnosis = $task->discharge?->diagnosis_text ?? $task->discharge?->diagnosis_code ?? '';
         $dueAt = $task->due_at?->format('d.m.Y H:i') ?? '';
+        $hospital = $task->hospitalClinic?->name ?? '';
 
-        $message = "Yangi patronaj task: {$patientName}, {$diagnosis}. Muddat: {$dueAt}. Qabul qiling.";
+        $sevLabel = match ($task->discharge?->severity_level) {
+            'mild' => 'Yengil',
+            'moderate' => 'O\'rtacha',
+            'severe' => 'Og\'ir',
+            'critical' => 'Juda og\'ir',
+            default => '—',
+        };
 
-        $recipientId = $task->familyDoctor?->user_id;
+        $message = "🆕 *YANGI PATRONAJ VAZIFASI*\n\n"
+            . "👤 *Bemor:* {$patientName}\n"
+            . "🏥 *Shifoxona:* {$hospital}\n"
+            . "🔬 *Tashxis:* {$diagnosis}\n"
+            . "📊 *Og'irlik:* {$sevLabel}\n"
+            . "📅 *Muddat:* {$dueAt}\n\n"
+            . "Qabul qilish uchun tugmani bosing:";
 
-        foreach (self::NOTIFICATION_CHANNELS as $channel) {
-            PatronageNotification::query()->create([
-                'patronage_task_id' => $task->id,
-                'channel' => $channel,
-                'recipient_type' => 'doctor',
-                'recipient_id' => $recipientId,
-                'message_body' => $message,
-                'status' => 'pending',
-                'attempt_count' => 0,
-            ]);
+        // Save notification record
+        $recipientId = $task->familyDoctor?->id;
+        PatronageNotification::query()->create([
+            'patronage_task_id' => $task->id,
+            'channel' => 'telegram',
+            'recipient_type' => 'doctor',
+            'recipient_id' => $recipientId,
+            'message_body' => $message,
+            'status' => 'pending',
+            'attempt_count' => 0,
+        ]);
+
+        // Send via Telegram if doctor has chat_id
+        $chatId = $task->familyDoctor?->telegram_chat_id;
+        if ($chatId) {
+            try {
+                $this->bot->sendMessageWithInlineKeyboard(
+                    (int) $chatId,
+                    $message,
+                    [
+                        [['text' => '✅ Qabul qilish', 'callback_data' => "accept:{$task->id}"]],
+                        [['text' => '📋 Batafsil', 'callback_data' => "task:{$task->id}"]],
+                    ]
+                );
+
+                PatronageNotification::query()
+                    ->where('patronage_task_id', $task->id)
+                    ->where('channel', 'telegram')
+                    ->latest()
+                    ->first()
+                    ?->update(['status' => 'sent', 'sent_at' => now(), 'attempt_count' => 1]);
+            } catch (\Throwable $e) {
+                Log::error('Patronage Telegram notification failed', ['error' => $e->getMessage(), 'task_id' => $task->id]);
+            }
         }
 
         if (! in_array($task->status, ['notified', 'accepted', 'in_progress', 'completed'], true)) {

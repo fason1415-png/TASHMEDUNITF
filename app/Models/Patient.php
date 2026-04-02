@@ -33,10 +33,7 @@ class Patient extends Model
         'meta',
     ];
 
-    protected $hidden = [
-        'pinfl',
-        'phone',
-    ];
+    protected $hidden = [];
 
     protected function casts(): array
     {

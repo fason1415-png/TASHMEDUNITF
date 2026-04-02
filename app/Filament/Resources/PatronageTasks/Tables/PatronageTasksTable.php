@@ -13,23 +13,28 @@ class PatronageTasksTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->defaultSort('id', 'desc')
+            ->defaultSort('due_at', 'asc')
             ->columns([
                 TextColumn::make('patient.full_name')
+                    ->label('Bemor')
+                    ->searchable()
+                    ->weight('bold'),
+                TextColumn::make('familyDoctor.full_name')
+                    ->label('Shifokor')
                     ->searchable(),
-                TextColumn::make('familyDoctor.full_name'),
-                TextColumn::make('task_type')
-                    ->badge(),
-                TextColumn::make('priority')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'normal' => 'gray',
-                        'high' => 'warning',
-                        'urgent' => 'danger',
-                        default => 'gray',
-                    }),
                 TextColumn::make('status')
+                    ->label('Holat')
                     ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'pending' => 'Kutilmoqda',
+                        'notified' => 'Xabar berildi',
+                        'accepted' => 'Qabul qilindi',
+                        'in_progress' => 'Jarayonda',
+                        'completed' => 'Bajarildi',
+                        'missed' => 'O\'tkazib yuborildi',
+                        'escalated' => 'Eskalatsiya',
+                        default => $state,
+                    })
                     ->color(fn (string $state): string => match ($state) {
                         'pending' => 'gray',
                         'notified' => 'info',
@@ -40,32 +45,54 @@ class PatronageTasksTable
                         'escalated' => 'danger',
                         default => 'gray',
                     }),
+                TextColumn::make('priority')
+                    ->label('Muhimlik')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'normal' => 'Oddiy',
+                        'high' => 'Muhim',
+                        'urgent' => 'Shoshilinch',
+                        default => $state,
+                    })
+                    ->color(fn (string $state): string => match ($state) {
+                        'normal' => 'gray',
+                        'high' => 'warning',
+                        'urgent' => 'danger',
+                        default => 'gray',
+                    }),
                 TextColumn::make('due_at')
-                    ->dateTime()
-                    ->sortable(),
+                    ->label('Muddat')
+                    ->dateTime('d.m.Y H:i')
+                    ->sortable()
+                    ->color(fn ($record) => $record->due_at?->isPast() && !in_array($record->status, ['completed', 'missed']) ? 'danger' : null),
                 IconColumn::make('sla_breached')
+                    ->label('SLA')
                     ->boolean()
-                    ->label('SLA'),
-                TextColumn::make('escalation_level'),
+                    ->trueIcon('heroicon-o-exclamation-triangle')
+                    ->trueColor('danger')
+                    ->falseIcon('heroicon-o-check-circle')
+                    ->falseColor('success'),
             ])
             ->filters([
                 SelectFilter::make('status')
+                    ->label('Holat')
                     ->options([
-                        'pending' => 'Pending',
-                        'notified' => 'Notified',
-                        'accepted' => 'Accepted',
-                        'in_progress' => 'In Progress',
-                        'completed' => 'Completed',
-                        'missed' => 'Missed',
-                        'escalated' => 'Escalated',
+                        'pending' => 'Kutilmoqda',
+                        'notified' => 'Xabar berildi',
+                        'accepted' => 'Qabul qilindi',
+                        'in_progress' => 'Jarayonda',
+                        'completed' => 'Bajarildi',
+                        'missed' => 'O\'tkazib yuborildi',
                     ]),
                 SelectFilter::make('priority')
+                    ->label('Muhimlik')
                     ->options([
-                        'normal' => 'Normal',
-                        'high' => 'High',
-                        'urgent' => 'Urgent',
+                        'normal' => 'Oddiy',
+                        'high' => 'Muhim',
+                        'urgent' => 'Shoshilinch',
                     ]),
-                TernaryFilter::make('sla_breached'),
+                TernaryFilter::make('sla_breached')
+                    ->label('SLA buzilgan'),
             ]);
     }
 }

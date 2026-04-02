@@ -34,6 +34,8 @@ class ClinicPanelProvider extends PanelProvider
             ->path('clinic')
             ->login(AdminLogin::class)
             ->brandName('ShifoReyting | Klinika')
+            ->brandLogo(fn () => view('filament.brand-logo'))
+            ->brandLogoHeight('40px')
             ->sidebarWidth('17rem')
             ->maxContentWidth('full')
             ->navigationGroups([

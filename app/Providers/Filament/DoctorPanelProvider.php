@@ -29,6 +29,8 @@ class DoctorPanelProvider extends PanelProvider
             ->path('doctor')
             ->login(AdminLogin::class)
             ->brandName('ShifoReyting | Shifokor')
+            ->brandLogo(fn () => view('filament.brand-logo'))
+            ->brandLogoHeight('40px')
             ->sidebarWidth('17rem')
             ->maxContentWidth('full')
             ->colors([

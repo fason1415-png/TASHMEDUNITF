@@ -17,10 +17,22 @@ class DischargesTable
             ->defaultSort('id', 'desc')
             ->columns([
                 TextColumn::make('patient.full_name')
+                    ->label('Bemor')
+                    ->searchable()
+                    ->weight('bold'),
+                TextColumn::make('attendingDoctor.full_name')
+                    ->label('Shifokor')
                     ->searchable(),
-                TextColumn::make('attendingDoctor.full_name'),
                 TextColumn::make('severity_level')
+                    ->label('Og\'irlik')
                     ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'mild' => 'Yengil',
+                        'moderate' => 'O\'rtacha',
+                        'severe' => 'Og\'ir',
+                        'critical' => 'Juda og\'ir',
+                        default => $state,
+                    })
                     ->color(fn (string $state): string => match ($state) {
                         'mild' => 'gray',
                         'moderate' => 'warning',
@@ -28,15 +40,32 @@ class DischargesTable
                         'critical' => 'danger',
                         default => 'gray',
                     }),
-                TextColumn::make('discharge_type'),
+                TextColumn::make('discharge_type')
+                    ->label('Chiqarish turi')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'recovery' => 'Tuzalish',
+                        'improvement' => 'Yaxshilanish',
+                        'transfer' => 'Ko\'chirish',
+                        'against_advice' => 'O\'z xohishi',
+                        'death' => 'Vafot',
+                        default => $state,
+                    })
+                    ->color(fn (string $state): string => match ($state) {
+                        'recovery' => 'success',
+                        'improvement' => 'info',
+                        'transfer' => 'warning',
+                        'against_advice' => 'gray',
+                        'death' => 'danger',
+                        default => 'gray',
+                    }),
                 IconColumn::make('requires_patronage')
+                    ->label('Patronaj')
                     ->boolean(),
                 TextColumn::make('discharged_at')
-                    ->dateTime()
+                    ->label('Sana')
+                    ->dateTime('d.m.Y H:i')
                     ->sortable(),
-            ])
-            ->filters([
-                //
             ])
             ->recordActions([
                 EditAction::make(),
